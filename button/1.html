@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>按钮-1</title>
+    <link rel="stylesheet" href="./css/idnex.css" />
+    <style>
+      .button-box {
+        background: #02994d;
+      }
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .button:before,
+      .button:after {
+        content: "";
+        position: absolute;
+        width: 300%;
+        height: 300%;
+        animation: anima 2s linear infinite;
+      }
+      .button:hover::before {
+        background-image: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #efe230
+        );
+      }
+      .button:hover::after {
+        background-image: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #e60012
+        );
+        animation-delay: -1s;
+      }
+      .button .text {
+        position: absolute;
+        inset: 3px;
+        background-color: #fff;
+        border-radius: 5px;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes anima {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-box">
+      <div class="button">
+        <span class="text">按钮</span>
+      </div>
+    </div>
+  </body>
+</html>
