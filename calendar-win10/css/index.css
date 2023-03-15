@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+[v-cloak] {
+  /*比较大的段落，防止闪烁，看到花括号*/
+  display: none;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  color: #fff;
+  font-family: "微软雅黑";
+  font-weight: 1;
+  user-select: none;
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#calendar {
+  width: 360px;
+  height: 470px;
+  background: rgba(47, 51, 55, 0.8);
+}
+.calendar-header {
+  height: 115px;
+  border-bottom: 1px #acacad solid;
+  padding: 25px;
+  line-height: 1;
+}
+.calendar-header .calendar-header-time {
+  font-size: 42px;
+}
+.calendar-header .calendar-header-date {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 20px;
+  position: relative;
+  margin-top: 5px;
+}
+.calendar-header .calendar-header-date::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #fff;
+}
+.calendar-header .calendar-header-date:hover {
+  cursor: pointer;
+  color: #acacad;
+}
+.calendar-header .calendar-header-date:hover::after {
+  background-color: #acacad;
+}
+
+.calendar-content-grid {
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 40px;
+  padding: 15px 15px 0;
+  place-items: center;
+}
+
+.calendar-info {
+  grid-column: 1 / span 5;
+  justify-self: start;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.calendar-info span {
+  color: rgba(255, 255, 255, 0.8);
+}
+.calendar-info span:hover {
+  color: rgba(255, 255, 255, 1);
+}
+.calendar-arrow span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+}
+.calendar-arrow span:hover {
+  border-top: 1px solid rgba(255, 255, 255, 1);
+  border-left: 1px solid rgba(255, 255, 255, 1);
+}
+.calendar-arrow {
+  transform: translateY(4px);
+}
+.calendar-arrow.calendar-arrow-down span {
+  transform: rotate(-135deg);
+}
+.calendar-arrow.calendar-arrow-down {
+  transform: translateY(-3px);
+}
+.calendar-content-day {
+  position: relative;
+}
+.calendar-content-day-grid {
+  position: absolute;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 40px);
+  padding: 0 15px;
+  font-size: 13px;
+}
+.calendar-content-day-grid > div {
+  margin: 1px;
+}
+.calendar-content-day-grid.day-border-layer {
+  top: 40px;
+  pointer-events: none;
+  visibility: hidden;
+  -webkit-mask-image: radial-gradient(
+    circle at 50%,
+    white 0%,
+    transparent 80px
+  );
+  mask-image: radial-gradient(circle at 50%, white 0%, transparent 80px);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 160px 160px;
+  mask-size: 160px 160px;
+}
+#calendar:hover .calendar-content-day-grid.day-border-layer {
+  visibility: visible;
+}
+
+.calendar-content-day-grid.day-border-layer > div {
+  border: 2px solid #adabab;
+}
+.calendar-content-day-grid.day-layer .week {
+  text-align: center;
+  line-height: 40px;
+}
+.calendar-content-day-grid.day-layer .day-item span {
+  display: block;
+  text-align: center;
+}
+.calendar-content-day-grid.day-layer > div.day-item {
+  place-items: center;
+  border: 2px solid transparent;
+  position: relative;
+}
+.calendar-content-day-grid.day-layer > div.day-item .num {
+  font-weight: 400;
+}
+.calendar-content-day-grid.day-layer > div.day-item .lunar {
+  font-size: 12px;
+}
+.calendar-content-day-grid.day-layer > div.day-item:hover,
+.calendar-content-day-grid.day-layer > div.day-item.active.current:hover {
+  place-items: center;
+  border: 2px solid #c7c3c3;
+}
+.calendar-content-day-grid.day-layer > div.day-item.current {
+  background: #4d4c4c;
+}
+.calendar-content-day-grid.day-layer > div.day-item.active.current::after {
+  position: absolute;
+  content: "";
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  border: 2px solid #000000;
+}
+.calendar-content-day-grid.day-layer > div.day-item.active {
+  border: 2px solid #4d4c4c;
+}
+.calendar-content-day-grid.day-layer > div.day-item.grey {
+  color: #a7a4a4;
+}
+.calendar-content-day-grid.day-layer > div.day-item.grey.active {
+  color: #fff;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>仿 Win 10 日历</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/date.js"></script>
+    <script src="js/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="calendar" @mousemove="mousemove($event)">
+      <div class="calendar-header">
+        <div class="calendar-header-time">{{currentTime}}</div>
+        <div class="calendar-header-date" @click="current">{{currentDate}}</div>
+      </div>
+      <div class="calendar-content">
+        <div class="calendar-content-header">
+          <div class="calendar-content-grid">
+            <div class="calendar-info">
+              <span>{{calendarInfo}}</span>
+            </div>
+            <div class="calendar-arrow" @click="arrow('previous')">
+              <span></span>
+            </div>
+            <div
+              class="calendar-arrow calendar-arrow-down"
+              @click="arrow('next')"
+            >
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="calendar-content-day" v-if="mode==='day'">
+          <div class="calendar-content-day-grid day-border-layer" ref="mask">
+            <div v-for="i in 42"></div>
+          </div>
+          <div class="calendar-content-day-grid day-layer">
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+            <div class="week">日</div>
+            <div
+              v-for="(item) in days.dateList"
+              class="day-item"
+              :class=" {current: item.date === days.currentDay, active: item.date === days.activeDay, grey:item.date.indexOf(days.activeMonth) === -1}"
+              :key="item.date"
+              @click="days.activeDay = item.date"
+            >
+              <span class="num">{{item.num}}</span>
+              <span class="lunar">{{item.lunar}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/index.js"></script>
+</html>
