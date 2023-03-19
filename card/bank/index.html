@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>银行卡切换</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div id="app" :class="{down:activeCard!=null}">
+      <div
+        class="card"
+        v-for="(item, index) in cardList"
+        :class="{ active: activeCard === item.id  }"
+        :style="`top: ${index * 50 + 20}px;--i: ${index}`"
+        @click="activeCard=activeCard===item.id?null:item.id"
+      >
+        <div class="name" v-html="item.name"></div>
+        <div class="number" v-html="item.number"></div>
+      </div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
