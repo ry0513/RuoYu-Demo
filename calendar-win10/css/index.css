@@ -1,10 +1,6 @@
 * {
   box-sizing: border-box;
 }
-[v-cloak] {
-  /*比较大的段落，防止闪烁，看到花括号*/
-  display: none;
-}
 html,
 body {
   height: 100%;
